@@ -1,0 +1,105 @@
+import tkinter as tk
+from tkinter import *
+import pygame
+from PIL import Image, ImageTk
+from itertools import count
+import random
+import string
+
+root = Tk()
+pygame.mixer.init()
+root.title('TheSims')
+root.geometry('558x788')
+root.resizable(0, 0)
+
+
+class ImageLabel(tk.Label):
+
+    def load(self, im):
+        if isinstance(im, str):
+            im = Image.open(im)
+        self.loc = 0
+        self.frames = []
+
+        try:
+            for i in count(1):
+                self.frames.append(ImageTk.PhotoImage(im.copy()))
+                im.seek(i)
+        except EOFError:
+            pass
+
+        try:
+            self.delay = im.info['duration']
+        except:
+            self.delay = 10
+
+        if len(self.frames) == 1:
+            self.config(image=self.frames[0])
+        else:
+            self.next_frame()
+
+    def unload(self):
+        self.config(image=' ')
+        self.frames = None
+
+    def next_frame(self):
+        if self.frames:
+            self.loc += 1
+            self.loc %= len(self.frames)
+            self.config(image=self.frames[self.loc])
+            self.after(self.delay, self.next_frame)
+
+
+def play():
+    pygame.mixer.music.load('S.mp3')
+    pygame.mixer.music.play(-1)
+
+
+def clicked():
+    a = random.choice(string.ascii_letters)
+    b = random.choice(string.ascii_letters)
+    c = random.choice(string.ascii_letters)
+    e = random.randint(0, 9)
+    p = random.randint(0, 9)
+    d = [str(a), str(b), str(c), str(e), str(p)]
+    g = random.sample(d, k=5)
+    f = ''.join(g) + '-'
+    a = random.choice(string.ascii_letters)
+    b = random.choice(string.ascii_letters)
+    c = random.choice(string.ascii_letters)
+    e = random.randint(0, 9)
+    p = random.randint(0, 9)
+    d = [str(a), str(b), str(c), str(e), str(p)]
+    g = random.sample(d, k=5)
+    h = ''.join(g) + '-'
+    a = random.choice(string.ascii_letters)
+    b = random.choice(string.ascii_letters)
+    c = random.choice(string.ascii_letters)
+    e = random.randint(0, 9)
+    p = random.randint(0, 9)
+    d = [str(a), str(b), str(c), str(e), str(p)]
+    g = random.sample(d, k=5)
+    k = ''.join(g)
+    m = f + h + k
+    return m
+
+
+lbl = ImageLabel(root)
+lbl.pack()
+
+frame = tk.Frame(root)
+frame.place(relx=0.5, rely=0.5, anchor='center')
+
+bg = PhotoImage(lbl.load('TheSims.jpeg'))
+lbl_bg = Label(frame, image=bg)
+lbl_bg.place(x=0, y=0)
+
+lbl_result = Label(frame, font=('Arial', 25))
+lbl_result.grid(column=0, row=0, padx=10, pady=10)
+
+btn = Button(frame, text='Calculate', command=clicked)
+btn.grid(column=0, row=0)
+
+play()
+
+root.mainloop()
