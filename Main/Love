@@ -56,31 +56,14 @@ def play():
 
 
 def clicked():
-    a = random.choice(string.ascii_letters)
-    b = random.choice(string.ascii_letters)
-    c = random.choice(string.ascii_letters)
+
+    letters = random.choice(string.ascii_letters)
     e = random.randint(0, 9)
     p = random.randint(0, 9)
-    d = [str(a), str(b), str(c), str(e), str(p)]
+    d = [str(letters), str(letters), str(letters), str(e), str(p)]
     g = random.sample(d, k=5)
     f = ''.join(g) + '-'
-    a = random.choice(string.ascii_letters)
-    b = random.choice(string.ascii_letters)
-    c = random.choice(string.ascii_letters)
-    e = random.randint(0, 9)
-    p = random.randint(0, 9)
-    d = [str(a), str(b), str(c), str(e), str(p)]
-    g = random.sample(d, k=5)
-    h = ''.join(g) + '-'
-    a = random.choice(string.ascii_letters)
-    b = random.choice(string.ascii_letters)
-    c = random.choice(string.ascii_letters)
-    e = random.randint(0, 9)
-    p = random.randint(0, 9)
-    d = [str(a), str(b), str(c), str(e), str(p)]
-    g = random.sample(d, k=5)
-    k = ''.join(g)
-    m = f + h + k
+    m = f * 3
     return m
 
 
@@ -103,3 +86,4 @@ btn.grid(column=0, row=0)
 play()
 
 root.mainloop()
+
