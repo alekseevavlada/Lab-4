@@ -77,8 +77,8 @@ bg = PhotoImage(lbl.load('TheSims.jpeg'))
 lbl_bg = Label(frame, image=bg)
 lbl_bg.place(x=0, y=0)
 
-lbl_result = Label(frame, font=('Arial', 25))
-lbl_result.grid(column=0, row=0, padx=10, pady=10)
+lbl_result = Label(root, font=('Arial', 25))
+lbl_result.place(x=130, y=700)
 
 btn = Button(frame, text='Calculate', command=clicked)
 btn.grid(column=0, row=0)
