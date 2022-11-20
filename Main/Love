@@ -55,16 +55,18 @@ def play():
     pygame.mixer.music.play(-1)
 
 
-def clicked():
+def block_gen():
 
-    letters = random.choice(string.ascii_letters)
-    e = random.randint(0, 9)
-    p = random.randint(0, 9)
-    d = [str(letters), str(letters), str(letters), str(e), str(p)]
+    d = [str(random.choice(string.ascii_letters)), str(random.choice(string.ascii_letters)), str(random.choice(string.ascii_letters)), str(random.randint(0, 9)), str(random.randint(0, 9))] 
     g = random.sample(d, k=5)
-    f = ''.join(g) + '-'
-    m = f * 3
-    return m
+    f = ''.join(g) 
+    return f 
+    
+
+def clicked():
+    key = f'{block_gen()}-{block_gen()}-{block_gen()}'
+    print(key)
+    return key
 
 
 lbl = ImageLabel(root)
@@ -86,4 +88,3 @@ btn.grid(column=0, row=0)
 play()
 
 root.mainloop()
-
