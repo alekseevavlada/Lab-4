@@ -10,7 +10,6 @@ root = Tk()
 pygame.mixer.init()
 root.title('TheSims')
 root.geometry('558x788')
-root.resizable(0, 0)
 
 
 class ImageLabel(tk.Label):
@@ -56,17 +55,16 @@ def play():
 
 
 def block_gen():
-
-    d = [str(random.choice(string.ascii_letters)), str(random.choice(string.ascii_letters)), str(random.choice(string.ascii_letters)), str(random.randint(0, 9)), str(random.randint(0, 9))] 
+    d = [str(random.choice(string.ascii_letters)), str(random.choice(string.ascii_letters)),
+         str(random.choice(string.ascii_letters)), str(random.randint(0, 9)), str(random.randint(0, 9))]
     g = random.sample(d, k=5)
-    f = ''.join(g) 
-    return f 
-    
+    f = ''.join(g)
+    return f
+
 
 def clicked():
     key = f'{block_gen()}-{block_gen()}-{block_gen()}'
-    print(key)
-    return key
+    lbl_result.configure(text=key)
 
 
 lbl = ImageLabel(root)
